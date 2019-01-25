@@ -10,7 +10,7 @@ import UIKit
 
 class TodayListViewController: UITableViewController {
    
-    let todayArray = ["find love","fell in  love","make love"]
+    var todayArray = ["find love","fell in  love","make love"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +40,27 @@ class TodayListViewController: UITableViewController {
         }
         tableView.deselectRow(at: indexPath, animated: true)
     }
+    
+    //    MARK :- add  bar button here
+    
+    @IBAction func addItemPressed(_ sender: UIBarButtonItem) {
+        var textField = UITextField()
+       let alert = UIAlertController(title: "ADD NEW ITEM HERE", message: "", preferredStyle: .alert)
+        
+        let action = UIAlertAction(title: "ADD ITEM", style: .default) { (UIAlertAction) in
+            self.todayArray.append(textField.text!)
+            self.tableView.reloadData()
+        }
+        
+        alert.addTextField { (alertTextField) in
+            alertTextField.placeholder = "create new item"
+            textField = alertTextField
+        }
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
+        
+    }
+    
 
 }
 

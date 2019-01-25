@@ -32,7 +32,13 @@
                             <outlet property="delegate" destination="CIH-Kr-U14" id="7th-Sy-Nc6"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="TODAY LIST" id="z2Q-7C-mdV"/>
+                    <navigationItem key="navigationItem" title="TODAY LIST" id="z2Q-7C-mdV">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="n6l-Hd-rSn">
+                            <connections>
+                                <action selector="addItemPressed:" destination="CIH-Kr-U14" id="pHo-Mg-OlM"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eZL-Pe-loP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
