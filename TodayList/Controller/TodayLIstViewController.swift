@@ -10,16 +10,32 @@ import UIKit
 
 class TodayListViewController: UITableViewController {
    
-    var todayArray = ["find love","fell in  love","make love"]
+    var todayArray = [ItemClass]()
     
     var defaults = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        if let items = defaults.array(forKey: "TodayListArray") as? [String]{
-          todayArray = items
+    
+        
+        let newItem = ItemClass()
+        newItem.title = "make love"
+        todayArray.append(newItem)
+        
+        let newItem1 = ItemClass()
+        newItem1.title = "fell in love"
+        todayArray.append(newItem1)
+        
+        let newItem2 = ItemClass()
+        newItem2.title = "populate the love"
+        todayArray.append(newItem2)
+        
+        if let items = defaults.array(forKey: "TodayListArray") as? [ItemClass]{
+            todayArray = items
         }
+       
+        
     }
     //  MARK:- create the data source methods
     
@@ -29,7 +45,20 @@ class TodayListViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell =  tableView.dequeueReusableCell(withIdentifier: "TodayItemCell", for: indexPath)
-        cell.textLabel?.text = todayArray[indexPath.row]
+        
+        let item = todayArray[indexPath.row]
+        
+        cell.textLabel?.text = item.title
+        
+//        ternary Operator
+        cell.accessoryType = item.done ? .checkmark : .none
+        
+        
+//       if  todayArray[indexPath.row].done == true{
+//            cell.accessoryType = .checkmark
+//       }else {
+//        cell.accessoryType = .none
+//        }
         
         return cell
     }
@@ -38,12 +67,20 @@ class TodayListViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(todayArray[indexPath.row])
+        
+        if todayArray[indexPath.row].done == false {
+            todayArray[indexPath.row].done = true
+        }else {
+            todayArray[indexPath.row].done = false
+        }
         if tableView.cellForRow(at: indexPath)?.accessoryType == .checkmark{
             tableView.cellForRow(at: indexPath)?.accessoryType = .none
         }else {
             tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
         }
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        tableView.reloadData()
     }
     
     //    MARK :- add  bar button here
@@ -53,7 +90,12 @@ class TodayListViewController: UITableViewController {
        let alert = UIAlertController(title: "ADD NEW ITEM HERE", message: "", preferredStyle: .alert)
         
         let action = UIAlertAction(title: "ADD ITEM", style: .default) { (UIAlertAction) in
-            self.todayArray.append(textField.text!)
+            
+            let newItem = ItemClass()
+            newItem.title = textField.text!
+            self.todayArray.append(newItem
+            )
+//            self.todayArray.append(textField)
             self.defaults.set(self.todayArray, forKey: "TodayListArray")
             self.tableView.reloadData()
         }
