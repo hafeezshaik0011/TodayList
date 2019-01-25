@@ -12,9 +12,14 @@ class TodayListViewController: UITableViewController {
    
     var todayArray = ["find love","fell in  love","make love"]
     
+    var defaults = UserDefaults.standard
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        if let items = defaults.array(forKey: "TodayListArray") as? [String]{
+          todayArray = items
+        }
     }
     //  MARK:- create the data source methods
     
@@ -49,6 +54,7 @@ class TodayListViewController: UITableViewController {
         
         let action = UIAlertAction(title: "ADD ITEM", style: .default) { (UIAlertAction) in
             self.todayArray.append(textField.text!)
+            self.defaults.set(self.todayArray, forKey: "TodayListArray")
             self.tableView.reloadData()
         }
         
