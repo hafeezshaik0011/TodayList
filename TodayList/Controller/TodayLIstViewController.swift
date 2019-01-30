@@ -12,31 +12,16 @@ class TodayListViewController: UITableViewController {
    
     var todayArray = [ItemClass]()
     
-    var defaults = UserDefaults.standard
+      let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Items.plist")
+    
+//    var defaults = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-    
-        
-        let newItem = ItemClass()
-        newItem.title = "make love"
-        todayArray.append(newItem)
-        
-        let newItem1 = ItemClass()
-        newItem1.title = "fell in love"
-        todayArray.append(newItem1)
-        
-        let newItem2 = ItemClass()
-        newItem2.title = "populate the love"
-        todayArray.append(newItem2)
-        
-        if let items = defaults.array(forKey: "TodayListArray") as? [ItemClass]{
-            todayArray = items
-        }
-       
-        
-    }
+       print(dataFilePath)
+        loadData()
+ }
     //  MARK:- create the data source methods
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -54,11 +39,7 @@ class TodayListViewController: UITableViewController {
         cell.accessoryType = item.done ? .checkmark : .none
         
         
-//       if  todayArray[indexPath.row].done == true{
-//            cell.accessoryType = .checkmark
-//       }else {
-//        cell.accessoryType = .none
-//        }
+
         
         return cell
     }
@@ -68,19 +49,13 @@ class TodayListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(todayArray[indexPath.row])
         
-        if todayArray[indexPath.row].done == false {
-            todayArray[indexPath.row].done = true
-        }else {
-            todayArray[indexPath.row].done = false
-        }
-        if tableView.cellForRow(at: indexPath)?.accessoryType == .checkmark{
-            tableView.cellForRow(at: indexPath)?.accessoryType = .none
-        }else {
-            tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
-        }
+         todayArray[indexPath.row].done = !todayArray[indexPath.row].done
+       
+        saveItems()
+       
         tableView.deselectRow(at: indexPath, animated: true)
         
-        tableView.reloadData()
+        
     }
     
     //    MARK :- add  bar button here
@@ -93,11 +68,10 @@ class TodayListViewController: UITableViewController {
             
             let newItem = ItemClass()
             newItem.title = textField.text!
-            self.todayArray.append(newItem
-            )
-//            self.todayArray.append(textField)
-            self.defaults.set(self.todayArray, forKey: "TodayListArray")
-            self.tableView.reloadData()
+            self.todayArray.append(newItem)
+            self.saveItems()
+    
+           
         }
         
         alert.addTextField { (alertTextField) in
@@ -108,7 +82,31 @@ class TodayListViewController: UITableViewController {
         present(alert, animated: true, completion: nil)
         
     }
+    //    mark:-model manupulation methods
     
+    func saveItems(){
+        let encoder = PropertyListEncoder()
+        
+        do{
+            let data = try encoder.encode(todayArray)
+            try data.write(to: dataFilePath!)
+        }catch{
+            print("error in encoding today array \(error)")
+        }
+        
+        self.tableView.reloadData()
+    }
+    
+    func loadData(){
+        if let data = try? Data(contentsOf: dataFilePath!){
+            let decoder = PropertyListDecoder()
+            do{
+                todayArray = try decoder.decode([ItemClass].self, from: data)
+            }catch{
+                print("error in decoding the today array \(error)")
+            }
+        }
+    }
 
 }
 
