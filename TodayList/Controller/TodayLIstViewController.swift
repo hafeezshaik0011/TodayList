@@ -7,19 +7,27 @@
 //
 
 import UIKit
+import CoreData
 
 class TodayListViewController: UITableViewController {
    
-    var todayArray = [ItemClass]()
+    var todayArray = [Item]()
     
-      let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Items.plist")
+    var selectedCategory : Category?{
+        didSet{
+            loadData()
+        }
+    }
+    
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
 //    var defaults = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-       print(dataFilePath)
+       print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
+        
         loadData()
  }
     //  MARK:- create the data source methods
@@ -66,8 +74,10 @@ class TodayListViewController: UITableViewController {
         
         let action = UIAlertAction(title: "ADD ITEM", style: .default) { (UIAlertAction) in
             
-            let newItem = ItemClass()
+            let newItem = Item(context: self.context)
             newItem.title = textField.text!
+            newItem.done = false
+            newItem.parentCategory = self.selectedCategory
             self.todayArray.append(newItem)
             self.saveItems()
     
@@ -85,11 +95,10 @@ class TodayListViewController: UITableViewController {
     //    mark:-model manupulation methods
     
     func saveItems(){
-        let encoder = PropertyListEncoder()
+        
         
         do{
-            let data = try encoder.encode(todayArray)
-            try data.write(to: dataFilePath!)
+           try context.save()
         }catch{
             print("error in encoding today array \(error)")
         }
@@ -97,16 +106,47 @@ class TodayListViewController: UITableViewController {
         self.tableView.reloadData()
     }
     
-    func loadData(){
-        if let data = try? Data(contentsOf: dataFilePath!){
-            let decoder = PropertyListDecoder()
-            do{
-                todayArray = try decoder.decode([ItemClass].self, from: data)
-            }catch{
-                print("error in decoding the today array \(error)")
+    func loadData(with request : NSFetchRequest<Item> = Item.fetchRequest(),predicate:NSPredicate? = nil ){
+        let categoryPredicate = NSPredicate(format: "parentCategory.name MATCHES %@", selectedCategory!.name!)
+        
+        if let additionPredicate = predicate{
+            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categoryPredicate,additionPredicate])
+        }else{
+            request.predicate = categoryPredicate 
+        }
+//        let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categoryPredicate,predicate])
+//        request.predicate = categoryPredicate
+        
+        do{
+         todayArray = try context.fetch(request)
+        }catch{
+            print("error fetching data from context \(error)")
+        }
+        tableView.reloadData()
+
+    }
+
+}
+
+extension TodayListViewController : UISearchBarDelegate{
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        let request : NSFetchRequest<Item> = Item.fetchRequest()
+        let predicate  = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
+//        request .predicate = predicate
+        request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
+//        request.sortDescriptors = [sortDescriptor]
+        
+        loadData(with: request,predicate: predicate)
+
+            }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text?.count == 0 {
+            loadData()
+            DispatchQueue.main.async {
+                searchBar.resignFirstResponder()
             }
         }
     }
-
 }
 

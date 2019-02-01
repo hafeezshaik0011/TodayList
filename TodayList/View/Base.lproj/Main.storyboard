@@ -9,7 +9,46 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--TODAY LIST-->
+        <!--Todoey -->
+        <scene sceneID="fdS-RU-HpE">
+            <objects>
+                <tableViewController id="FkW-nZ-Kbr" customClass="CategoryTableViewController" customModule="TodayList" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="WGK-gq-1Xy">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CategoryCell" id="qWN-OJ-cXB">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qWN-OJ-cXB" id="frb-KF-xZL">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="FkW-nZ-Kbr" id="h9f-aI-7g1"/>
+                            <outlet property="delegate" destination="FkW-nZ-Kbr" id="8fp-R7-HjL"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Todoey " id="qeG-2i-zhV">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="iP9-af-fLj">
+                            <color key="tintColor" red="1" green="0.3249242168" blue="0.114481641" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="addButtonPressed:" destination="FkW-nZ-Kbr" id="28d-7m-tWd"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="CIH-Kr-U14" kind="show" identifier="goToItems" id="XE0-hu-YNF"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ITA-fE-d3o" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="933" y="89"/>
+        </scene>
+        <!--ITEMS-->
         <scene sceneID="Qol-8z-Ukc">
             <objects>
                 <tableViewController id="CIH-Kr-U14" customClass="TodayListViewController" customModule="TodayList" customModuleProvider="target" sceneMemberID="viewController">
@@ -17,9 +56,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="0SX-ko-pgv">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="CIH-Kr-U14" id="2tw-oF-2zA"/>
+                            </connections>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TodayItemCell" id="dFf-Yh-ynx">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dFf-Yh-ynx" id="Dma-8x-x3D">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -32,7 +79,7 @@
                             <outlet property="delegate" destination="CIH-Kr-U14" id="7th-Sy-Nc6"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="TODAY LIST" id="z2Q-7C-mdV">
+                    <navigationItem key="navigationItem" title="ITEMS" id="z2Q-7C-mdV">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="n6l-Hd-rSn">
                             <connections>
                                 <action selector="addItemPressed:" destination="CIH-Kr-U14" id="pHo-Mg-OlM"/>
@@ -42,7 +89,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eZL-Pe-loP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1093.5999999999999" y="84.107946026986511"/>
+            <point key="canvasLocation" x="1710" y="84"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="iZt-7q-bpw">
@@ -59,7 +106,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="CIH-Kr-U14" kind="relationship" relationship="rootViewController" id="p33-CH-tS1"/>
+                        <segue destination="FkW-nZ-Kbr" kind="relationship" relationship="rootViewController" id="gLc-ho-Lax"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nNt-Ip-9O5" userLabel="First Responder" sceneMemberID="firstResponder"/>
