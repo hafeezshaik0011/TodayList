@@ -14,9 +14,11 @@
 		18AC19AF21FAD49700EAB667 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18AC19AE21FAD49700EAB667 /* Assets.xcassets */; };
 		18AC19B221FAD49700EAB667 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18AC19B021FAD49700EAB667 /* LaunchScreen.storyboard */; };
 		18DB729B22022536004EC9B3 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 18DB729922022536004EC9B3 /* DataModel.xcdatamodeld */; };
+		875929AC5565C74A743F521D /* Pods_TodayList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B7DE08A1D24EF4044B1518B /* Pods_TodayList.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		181BC6FCDA8860F1456AEFAF /* Pods-TodayList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodayList.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TodayList/Pods-TodayList.debug.xcconfig"; sourceTree = "<group>"; };
 		187F5D322204BBA500CDA317 /* CategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
 		18AC19A421FAD49700EAB667 /* TodayList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodayList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18AC19A721FAD49700EAB667 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -26,6 +28,8 @@
 		18AC19B121FAD49700EAB667 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		18AC19B321FAD49700EAB667 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18DB729A22022536004EC9B3 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		3B7DE08A1D24EF4044B1518B /* Pods_TodayList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TodayList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9598B16DED4D7BEB7D0C296F /* Pods-TodayList.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodayList.release.xcconfig"; path = "Pods/Target Support Files/Pods-TodayList/Pods-TodayList.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				875929AC5565C74A743F521D /* Pods_TodayList.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +49,8 @@
 			children = (
 				18AC19A621FAD49700EAB667 /* TodayList */,
 				18AC19A521FAD49700EAB667 /* Products */,
+				DC9A0FAA79A97E31D5F352A6 /* Pods */,
+				915363A6D6D99F40A2FE9827 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -102,6 +109,23 @@
 			path = "Supporting files";
 			sourceTree = "<group>";
 		};
+		915363A6D6D99F40A2FE9827 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3B7DE08A1D24EF4044B1518B /* Pods_TodayList.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DC9A0FAA79A97E31D5F352A6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				181BC6FCDA8860F1456AEFAF /* Pods-TodayList.debug.xcconfig */,
+				9598B16DED4D7BEB7D0C296F /* Pods-TodayList.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -109,9 +133,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 18AC19B621FAD49700EAB667 /* Build configuration list for PBXNativeTarget "TodayList" */;
 			buildPhases = (
+				0193EDB0166086525BEA2887 /* [CP] Check Pods Manifest.lock */,
 				18AC19A021FAD49600EAB667 /* Sources */,
 				18AC19A121FAD49600EAB667 /* Frameworks */,
 				18AC19A221FAD49600EAB667 /* Resources */,
+				1880B57C02AEF0576E5AC143 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -167,6 +193,55 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0193EDB0166086525BEA2887 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TodayList-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1880B57C02AEF0576E5AC143 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-TodayList/Pods-TodayList-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TodayList/Pods-TodayList-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		18AC19A021FAD49600EAB667 /* Sources */ = {
@@ -320,6 +395,7 @@
 		};
 		18AC19B721FAD49700EAB667 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 181BC6FCDA8860F1456AEFAF /* Pods-TodayList.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -337,6 +413,7 @@
 		};
 		18AC19B821FAD49700EAB667 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9598B16DED4D7BEB7D0C296F /* Pods-TodayList.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
