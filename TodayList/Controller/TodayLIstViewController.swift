@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class TodayListViewController: UITableViewController {
+class TodayListViewController: SwipeTableViewController {
    
     var todoItems : Results<Item>?
     
@@ -37,7 +37,8 @@ class TodayListViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell =  tableView.dequeueReusableCell(withIdentifier: "TodayItemCell", for: indexPath)
+//        let cell =  tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
         
         if let item = todoItems?[indexPath.row]{
             cell.textLabel?.text = item.title
@@ -73,6 +74,17 @@ class TodayListViewController: UITableViewController {
         tableView.reloadData()
     }
     
+    override func updateModel(at indexPath: IndexPath) {
+        if let item = todoItems?[indexPath.row]{
+            do{
+                try realm.write {
+                    realm.delete(item)
+                }
+            }catch{
+                print("error deleting the item  \(error)")
+            }
+        }
+    }
     //    MARK :- add  bar button here
     
     @IBAction func addItemPressed(_ sender: UIBarButtonItem) {
