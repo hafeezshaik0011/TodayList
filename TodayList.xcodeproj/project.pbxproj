@@ -8,18 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		187F5D332204BBA500CDA317 /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187F5D322204BBA500CDA317 /* CategoryTableViewController.swift */; };
+		189FEC9222056A7B0049F4B0 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189FEC9122056A7B0049F4B0 /* Item.swift */; };
+		189FEC9422056A830049F4B0 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189FEC9322056A830049F4B0 /* Category.swift */; };
 		18AC19A821FAD49700EAB667 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AC19A721FAD49700EAB667 /* AppDelegate.swift */; };
 		18AC19AA21FAD49700EAB667 /* TodayLIstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AC19A921FAD49700EAB667 /* TodayLIstViewController.swift */; };
 		18AC19AD21FAD49700EAB667 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18AC19AB21FAD49700EAB667 /* Main.storyboard */; };
 		18AC19AF21FAD49700EAB667 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18AC19AE21FAD49700EAB667 /* Assets.xcassets */; };
 		18AC19B221FAD49700EAB667 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18AC19B021FAD49700EAB667 /* LaunchScreen.storyboard */; };
-		18DB729B22022536004EC9B3 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 18DB729922022536004EC9B3 /* DataModel.xcdatamodeld */; };
 		875929AC5565C74A743F521D /* Pods_TodayList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B7DE08A1D24EF4044B1518B /* Pods_TodayList.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		181BC6FCDA8860F1456AEFAF /* Pods-TodayList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodayList.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TodayList/Pods-TodayList.debug.xcconfig"; sourceTree = "<group>"; };
 		187F5D322204BBA500CDA317 /* CategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
+		189FEC9122056A7B0049F4B0 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		189FEC9322056A830049F4B0 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		18AC19A421FAD49700EAB667 /* TodayList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodayList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18AC19A721FAD49700EAB667 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18AC19A921FAD49700EAB667 /* TodayLIstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayLIstViewController.swift; sourceTree = "<group>"; };
@@ -27,7 +30,6 @@
 		18AC19AE21FAD49700EAB667 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		18AC19B121FAD49700EAB667 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		18AC19B321FAD49700EAB667 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		18DB729A22022536004EC9B3 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		3B7DE08A1D24EF4044B1518B /* Pods_TodayList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TodayList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9598B16DED4D7BEB7D0C296F /* Pods-TodayList.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodayList.release.xcconfig"; path = "Pods/Target Support Files/Pods-TodayList/Pods-TodayList.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -78,7 +80,8 @@
 		18E8612221FB8200003190CA /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				18DB729922022536004EC9B3 /* DataModel.xcdatamodeld */,
+				189FEC9322056A830049F4B0 /* Category.swift */,
+				189FEC9122056A7B0049F4B0 /* Item.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -248,10 +251,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				189FEC9222056A7B0049F4B0 /* Item.swift in Sources */,
 				18AC19AA21FAD49700EAB667 /* TodayLIstViewController.swift in Sources */,
-				18DB729B22022536004EC9B3 /* DataModel.xcdatamodeld in Sources */,
 				18AC19A821FAD49700EAB667 /* AppDelegate.swift in Sources */,
 				187F5D332204BBA500CDA317 /* CategoryTableViewController.swift in Sources */,
+				189FEC9422056A830049F4B0 /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -451,19 +455,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		18DB729922022536004EC9B3 /* DataModel.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				18DB729A22022536004EC9B3 /* DataModel.xcdatamodel */,
-			);
-			currentVersion = 18DB729A22022536004EC9B3 /* DataModel.xcdatamodel */;
-			path = DataModel.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 18AC199C21FAD49600EAB667 /* Project object */;
 }
